@@ -3,3 +3,9 @@
   RewriteRule ^$ http://localhost:3000/ [P]
   RewriteRule (.*) http://localhost:3000/$1 [P]
 </IfModule>
+
+<IfModule mod_proxy.c>
+  ProxyPreserveHost On
+  ProxyPass / http://localhost:3000/
+  ProxyPassReverse / http://localhost:3000/
+</IfModule>
