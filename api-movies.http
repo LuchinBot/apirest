@@ -1,0 +1,32 @@
+### Recuperar todas las películas
+
+GET http://localhost:3000/movies
+
+### Recuperar una película por id
+GET http://localhost:3000/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recuperar todas las películas por un género
+GET http://localhost:3000/movies?genre=Action
+
+
+### Crear una película
+POST http://localhost:3000/movies
+Content-Type: application/json
+
+{ 
+    "title":"Luchin y sus malcriadas",
+    "year": 2023,
+    "duration": 20,
+    "director": "Luchin",
+    "rate": 10,
+    "poster": "https://www.sensacine.com/peliculas/"
+}
+
+### Actualizar una película
+PATCH http://surveys.erazosystem.com/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+Content-Type: application/json
+
+{
+    "title":"Luchin",
+    "year": 1992
+}

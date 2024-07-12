@@ -2,6 +2,7 @@
 import express, { json } from 'express'
 
 import { moviesRouter } from './routes/movies.js'
+import { categoriesRouter } from './routes/categories.js'
 import { corsMiddleware } from './middlewares/cors.js'
 
 const app = express()
@@ -11,6 +12,7 @@ app.disable('x-powered-by')
 
 // Routes
 app.use('/movies', moviesRouter)
+app.use('/categories', categoriesRouter)
 
 // Error handling middleware
 app.use((err, req, res, next) => {

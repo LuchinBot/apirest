@@ -10,11 +10,11 @@ const movieSchema = zod.object({
   duration: zod.number().int().positive(),
   poster: zod.string().url({
     message: 'Poster must be a valid URL'
-  }),
+  }) /*
   genre: zod.array(zod.enum(['Action', 'Drama', 'Comedy']), {
     invalid_type_error: 'Genre must be an array of strings',
     required_error: 'Genre is required'
-  }),
+  }),*/,
   rate: zod.number().min(0).max(10)
 })
 
