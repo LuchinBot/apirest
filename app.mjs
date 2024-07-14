@@ -1,7 +1,6 @@
 // Imports
 import express, { json } from 'express'
 
-import { moviesRouter } from './routes/movies.js'
 import { categoriesRouter } from './routes/categories.js'
 import { corsMiddleware } from './middlewares/cors.js'
 
@@ -11,7 +10,6 @@ app.use(corsMiddleware())
 app.disable('x-powered-by')
 
 // Routes
-app.use('/movies', moviesRouter)
 app.use('/categories', categoriesRouter)
 
 // Error handling middleware
