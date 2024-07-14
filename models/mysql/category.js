@@ -17,7 +17,6 @@ const configServer = {
 }
 
 const connection = await mysql.createConnection(config)
-
 export class categoryModel {
   static async getAll({ genre }) {
     const [categories] = await connection.query('SELECT * FROM categories;')

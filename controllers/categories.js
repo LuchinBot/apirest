@@ -29,10 +29,17 @@ export class CategoryController {
   }
 
   static async create(req, res) {
-    const result = validateCategory(req.body)
+    // Añadir la URL de la imagen al cuerpo de la solicitud
+    const imageUrl = `/uploads/${req.file.filename}`
+    const categoryData = { ...req.body, image: imageUrl }
+
+    // Validar los datos de la categoría
+    const result = validateCategory(categoryData)
     if (result.error) {
-      return res.status(400).json({ error: JSON.parse(result.error.message) })
+      return res.status(400).json({ error: result.error.errors })
     }
+
+    // Crear la nueva categoría
     const newCategory = await categoryModel.create({ input: result.data })
     res.status(201).json(newCategory)
   }
