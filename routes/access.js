@@ -2,10 +2,10 @@ import { Router } from 'express'
 import { AccessController } from '../controllers/access.js'
 
 // Routes
-export const categoriesRouter = Router()
+export const accessRouter = Router()
 
-categoriesRouter.get('/', AccessController.getAll)
-categoriesRouter.get('/:id', AccessController.getById)
-categoriesRouter.post('/', AccessController.create)
-categoriesRouter.delete('/:id', AccessController.delete)
-categoriesRouter.patch('/:id', AccessController.update)
+accessRouter.get('/', AccessController.getAll)
+accessRouter.get('/:id', AccessController.getById)
+accessRouter.post('/', AccessController.create)
+accessRouter.delete('/:id', AccessController.delete)
+accessRouter.patch('/:id', AccessController.update)

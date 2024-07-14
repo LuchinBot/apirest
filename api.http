@@ -9,12 +9,12 @@ GET http://localhost:3000/categories/57d408608e1f
 DELETE http://localhost:3000/categories/57d408608e1f
 
 ### Crear una película
-POST http://localhost:3000/categories
+POST http://localhost:3000/access
 Content-Type: application/json
 
 { 
-   "description": "Prueba",
-    "image": "https://www.sensacine.com/peliculas/"
+   "idusers": "1",
+    "idprofiles": "1"
 }
 
 ### Actualizar una película

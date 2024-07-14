@@ -23,8 +23,12 @@ export class AccessController {
   }
 
   static async create(req, res) {
-    const accessData = { ...req.body }
-    const newaccess = await accessModel.create({ input: accessData.data })
+    console.log(req.body) // Verifica qué datos llegan en req.body
+
+    const accessData = { ...req.body } // Asegúrate de que accessData tenga los datos esperados
+    console.log(accessData)
+
+    const newaccess = await accessModel.create({ input: accessData })
     res.status(201).json(newaccess)
   }
 

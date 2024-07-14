@@ -20,13 +20,22 @@ export class accessModel {
   static async create({ input }) {
     const { idusers, idprofiles } = input
 
+    const [rows] = await connection.query('SELECT UUID() as uuid;')
+    const uuid = rows[0].uuid
+    const hash = crypto
+      .createHash('md5')
+      .update(uuid)
+      .digest('hex')
+      .substring(0, 12)
+
     // insert
     const [result] = await connection.query(
-      `INSERT INTO access (idusers, idprofiles, create_at) VALUES (?, ?, NOW());`,
-      [idusers, idprofiles]
+      `INSERT INTO access (id,idusers, idprofiles, create_at) VALUES (?,?, ?, NOW());`,
+      [hash, idusers, idprofiles]
     )
+    // Retornar un mensaje en json
 
-    console.log(result)
+    return 'access created'
   }
 
   static async delete({ id }) {
