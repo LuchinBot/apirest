@@ -1,7 +1,7 @@
 import crypto from 'crypto'
 import { connection } from '../../database.js'
 
-export class categoryModel {
+export class accessModel {
   static async getAll() {
     const [access] = await connection.query('SELECT * FROM access;')
     return access
