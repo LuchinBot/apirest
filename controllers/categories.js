@@ -41,7 +41,7 @@ export class CategoryController {
 
     // Crear la nueva categoría
     const newCategory = await categoryModel.create({ input: result.data })
-    res.status(201).json(newCategory)
+    return res.json({ message: 'Category created', newCategory })
   }
 
   static async delete(req, res) {
