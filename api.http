@@ -9,12 +9,12 @@ GET http://localhost:3000/categories/57d408608e1f
 DELETE http://localhost:3000/categories/57d408608e1f
 
 ### Crear una película
-POST http://localhost:3000/access
+POST http://localhost:3000/categories
 Content-Type: application/json
 
 { 
-   "idusers": "1",
-    "idprofiles": "1"
+  "description": "Pruebita",
+    "image": "ijh"
 }
 
 ### Actualizar una película

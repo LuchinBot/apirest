@@ -1,18 +1,15 @@
 import mysql from 'mysql2/promise'
+import dotenv from 'dotenv'
+dotenv.config()
+
 const config = {
   host: 'localhost',
   port: 3306,
-  user: 'nodejs',
-  password: '070121.070121',
-  database: 'db_kk'
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
 }
-const configServer = {
-  host: 'localhost',
-  port: 3306,
-  user: 'qyvwiiui_admin',
-  password: 'Notshethekey1.',
-  database: 'qyvwiiui_kk'
-}
+
 const connection = await mysql.createConnection(config)
 
 export { connection }
