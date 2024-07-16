@@ -9,4 +9,8 @@ categoriesRouter.get('/', CategoryController.getAll)
 categoriesRouter.get('/:id', CategoryController.getById)
 categoriesRouter.post('/', upload.single('image'), CategoryController.create)
 categoriesRouter.delete('/:id', CategoryController.delete)
-categoriesRouter.patch('/:id', CategoryController.update)
+categoriesRouter.patch(
+  '/:id',
+  upload.single('image'),
+  CategoryController.update
+)
