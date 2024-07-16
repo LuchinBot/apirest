@@ -18,7 +18,7 @@ export class categoryModel {
   }
 
   static async create({ input }) {
-    const { description, image } = input
+    const { titel, slug, description, image } = input
 
     const [rows] = await connection.query('SELECT UUID() as uuid;')
     const uuid = rows[0].uuid
@@ -30,8 +30,8 @@ export class categoryModel {
 
     // insert
     const [result] = await connection.query(
-      `INSERT INTO categories (id, description, image, create_at) VALUES (?, ?, ?, NOW());`,
-      [hash, description, image]
+      `INSERT INTO categories (id,title,slug, description, image, create_at) VALUES (?, ?, ?, ?, ?, NOW());`,
+      [hash, title, slug, description, image]
     )
 
     console.log(result)
@@ -46,9 +46,10 @@ export class categoryModel {
   }
 
   static async update({ id, input }) {
+    console.log(input)
     const [result] = await connection.query(
-      'UPDATE categories SET description = ?, image = ? WHERE id = ?;',
-      [input.description, input.image, id]
+      'UPDATE categories SET title=?, slug = ?, description = ?, image = ? WHERE id = ?;',
+      [input.title, input.slug, input.description, input.image, id]
     )
     console.log(result)
   }

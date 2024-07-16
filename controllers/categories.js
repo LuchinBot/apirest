@@ -7,8 +7,7 @@ import {
 
 export class CategoryController {
   static async getAll(req, res) {
-    const { genre } = req.query
-    const categories = await categoryModel.getAll({ genre })
+    const categories = await categoryModel.getAll()
     res.json(categories)
   }
 
@@ -29,7 +28,10 @@ export class CategoryController {
   }
 
   static async create(req, res) {
-    // Añadir la URL de la imagen al cuerpo de la solicitud
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' })
+    }
+    // Crear la URL de la imagen
     const imageUrl = `/uploads/${req.file.filename}`
     const categoryData = { ...req.body, image: imageUrl }
 
@@ -48,12 +50,13 @@ export class CategoryController {
     const { id } = req.params
     const result = await categoryModel.delete({ id })
     if (result === false) {
-      return res.status(404).json({ message: 'category not found' })
+      return res.status(404).json({ message: 'Category not found' })
     }
-    return res.json({ message: 'category deleted' })
+    return res.json({ message: 'Category deleted' })
   }
 
   static async update(req, res) {
+    console.log(req.body)
     const result = validatePartialCategory(req.body)
 
     if (!result.success) {
@@ -65,6 +68,6 @@ export class CategoryController {
       id,
       input: result.data
     })
-    return res.json(updateCategory)
+    return res.json({ message: 'Category updated', updateCategory })
   }
 }
