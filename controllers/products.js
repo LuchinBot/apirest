@@ -16,12 +16,12 @@ export class ProductController {
     console.log(req.params)
     try {
       const { id } = req.params
-      const category = await productModel.getById({ id })
+      const Product = await productModel.getById({ id })
 
-      if (category) {
-        res.json(category)
+      if (Product) {
+        res.json(Product)
       } else {
-        res.status(404).json({ message: 'Category not found' })
+        res.status(404).json({ message: 'Product not found' })
       }
     } catch (error) {
       console.error('Error:', error)
@@ -46,7 +46,7 @@ export class ProductController {
 
       // Crear la nueva categoría
       const newProducts = await productModel.create({ input: result.data })
-      return res.json({ message: 'Category created', newProducts })
+      return res.json({ message: 'Product created', newProducts })
     } catch (error) {
       console.error('Error:', error)
       res.status(500).json({ error: 'Server Error' })
@@ -58,9 +58,9 @@ export class ProductController {
       const { id } = req.params
       const result = await productModel.delete({ id })
       if (result === false) {
-        return res.status(404).json({ message: 'Category not found' })
+        return res.status(404).json({ message: 'Product not found' })
       }
-      return res.json({ message: 'Category deleted' })
+      return res.json({ message: 'Product deleted' })
     } catch (error) {
       console.error('Error:', error)
       res.status(500).json({ error: 'Server Error' })
@@ -86,7 +86,7 @@ export class ProductController {
         id,
         input: result.data
       })
-      return res.json({ message: 'Category updated', updateProduct })
+      return res.json({ message: 'Product updated', updateProduct })
     } catch (error) {
       console.error('Error:', error)
       res.status(500).json({ error: 'Server Error' })
