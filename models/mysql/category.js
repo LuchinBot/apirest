@@ -18,7 +18,7 @@ export class categoryModel {
   }
 
   static async create({ input }) {
-    const { titel, slug, description, image } = input
+    const { title, slug, description, image } = input
 
     const [rows] = await connection.query('SELECT UUID() as uuid;')
     const uuid = rows[0].uuid
