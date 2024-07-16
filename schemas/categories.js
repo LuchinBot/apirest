@@ -3,7 +3,8 @@ import zod from 'zod'
 const categorySchema = zod.object({
   title: zod.string({
     invalid_type_error: 'Title must be a string',
-    required_error: 'Title is required'
+    required_error: 'Title is required',
+    min_length: 255
   }),
   slug: zod.string({
     invalid_type_error: 'Slug must be a string',
