@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import { connection } from '../../database.js'
 
 export class categoryModel {
-  static async getAll({ genre }) {
+  static async getAll() {
     const [categories] = await connection.query('SELECT * FROM categories;')
     return categories
   }
