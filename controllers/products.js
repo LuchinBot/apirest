@@ -1,7 +1,7 @@
 import { productModel } from '../models/mysql/product.js'
 import { validateProduct, validatePartialProduct } from '../schemas/products.js'
 
-export class CategoryController {
+export class ProductController {
   static async getAll(req, res) {
     try {
       const products = await productModel.getAll()
