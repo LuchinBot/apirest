@@ -17,7 +17,7 @@ const productSchema = zod.object({
     invalid_type_error: 'Description must be a string',
     required_error: 'Description is required'
   }),
-  price: zod.decimal({
+  price: zod.number({
     invalid_type_error: 'Price must be a number',
     required_error: 'Price is required'
   }),

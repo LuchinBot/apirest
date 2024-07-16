@@ -1,5 +1,5 @@
 import { connection } from '../../database.js'
-import { hash } from '../../middlewares/crypto.js'
+import { generateHash } from '../../middlewares/crypto.js'
 
 export class productModel {
   static async getAll() {
@@ -18,6 +18,7 @@ export class productModel {
 
   static async create({ input }) {
     const { title, slug, description, price, stock, image } = input
+    const hash = await generateHash()
     const sql = `
     INSERT INTO products
     (id, idcategories,title,slug, description,price,stock, image, create_at)
