@@ -67,20 +67,25 @@ export class ProductController {
   }
 
   static async update(req, res) {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' })
+    }
+    // Crear la URL de la imagen
+    const imageUrl = `/uploads/${req.file.filename}`
+    const productData = { ...req.body, image: imageUrl }
     try {
-      console.log(req.body)
-      const result = validatePartialProduct(req.body)
+      const result = validatePartialProduct(productData)
 
       if (!result.success) {
         return res.status(400).json({ error: JSON.parse(result.error.message) })
       }
       const { id } = req.params
 
-      const updateCategory = await productModel.update({
+      const updateProduct = await productModel.update({
         id,
         input: result.data
       })
-      return res.json({ message: 'Category updated', updateCategory })
+      return res.json({ message: 'Category updated', updateProduct })
     } catch (error) {
       console.error('Error:', error)
       res.status(500).json({ error: 'Server Error' })
