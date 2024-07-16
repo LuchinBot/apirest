@@ -1,5 +1,6 @@
 import { connection } from '../../database.js'
 import { generateHash } from '../../middlewares/crypto.js'
+import { DateTime } from 'luxon'
 
 export class productModel {
   static async getAll() {
@@ -17,13 +18,14 @@ export class productModel {
   }
 
   static async create({ input }) {
+    const now = DateTime.now().setZone('America/Bogota').toISO()
     const { idcategories, title, slug, description, price, stock, image } =
       input
     const hash = await generateHash()
     const sql = `
     INSERT INTO products
     (id, idcategories,title,slug, description,price,stock, image, create_at)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, NOW());`
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);`
 
     try {
       const [result] = await connection.query(sql, [
@@ -34,7 +36,8 @@ export class productModel {
         description,
         price,
         stock,
-        image
+        image,
+        now
       ])
 
       console.log('Create result:', result)
