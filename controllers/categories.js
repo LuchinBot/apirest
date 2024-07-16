@@ -71,9 +71,14 @@ export class CategoryController {
   }
 
   static async update(req, res) {
+    if (!req.file) {
+      return res.status(400).json({ error: 'No file uploaded' })
+    }
+    // Crear la URL de la imagen
+    const imageUrl = `/uploads/${req.file.filename}`
+    const categoryData = { ...req.body, image: imageUrl }
     try {
-      console.log(req.body)
-      const result = validatePartialCategory(req.body)
+      const result = validatePartialCategory(categoryData)
 
       if (!result.success) {
         return res.status(400).json({ error: JSON.parse(result.error.message) })
