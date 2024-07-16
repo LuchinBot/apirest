@@ -12,7 +12,6 @@ export class categoryModel {
       'SELECT * FROM categories WHERE id = ?;',
       [id]
     )
-
     if (categories.length === 0) return null
     return categories[0]
   }
