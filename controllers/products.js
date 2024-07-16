@@ -13,6 +13,7 @@ export class ProductController {
   }
 
   static async getById(req, res) {
+    console.log(req.params)
     try {
       const { id } = req.params
       const category = await productModel.getById({ id })

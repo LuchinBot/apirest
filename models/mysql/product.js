@@ -9,7 +9,7 @@ export class productModel {
 
   static async getById({ id }) {
     const [products] = await connection.query(
-      'SELECT * FROM products p INNER JOIN categories c ON p.idcategories = c.id WHERE id = ?;',
+      'SELECT * FROM products p INNER JOIN categories c ON p.idcategories = c.id WHERE p.id = ?;',
       [id]
     )
     if (products.length === 0) return null
