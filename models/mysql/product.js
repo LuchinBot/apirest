@@ -17,7 +17,8 @@ export class productModel {
   }
 
   static async create({ input }) {
-    const { title, slug, description, price, stock, image } = input
+    const { idcategories, title, slug, description, price, stock, image } =
+      input
     const hash = await generateHash()
     const sql = `
     INSERT INTO products
@@ -27,6 +28,7 @@ export class productModel {
     try {
       const [result] = await connection.query(sql, [
         hash,
+        idcategories,
         title,
         slug,
         description,
@@ -50,6 +52,8 @@ export class productModel {
   }
 
   static async update({ id, input }) {
+    const { idcategories, title, slug, description, price, stock, image } =
+      input
     const sql = `
     UPDATE products 
     SET 
@@ -65,13 +69,13 @@ export class productModel {
   `
     try {
       const [result] = await connection.query(sql, [
-        input.idcategories,
-        input.title,
-        input.slug,
-        input.description,
-        input.price,
-        input.stock,
-        input.image,
+        idcategories,
+        title,
+        slug,
+        description,
+        price,
+        stock,
+        image,
         id
       ])
       console.log('Update result:', result)
